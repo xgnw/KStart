@@ -2,7 +2,7 @@
 
 # KStart
 # By: Dreamer-Paul
-# Last Update: 2022.5.27
+# Last Update: 2024.7.29
 
 一个简洁轻巧的起始页
 
@@ -32,9 +32,10 @@
 @media screen and (prefers-color-scheme: dark){
   :root{
     color: #ccc;
-    background-color: #222;
+    background-color: #000;
 
     --gray: #555;
+    --lighter-gray: #333;
     --shadow: 0 0 5em rgba(255, 255, 255, .1);
     --shadow-thin: 0 0 1em rgba(255, 255, 255, .3);
     --shadow-thick: 0 0 5em rgba(255, 255, 255, .2);
@@ -50,6 +51,10 @@
   blockquote{
     background-color: var(--secondly-input-bg);
   }
+}
+
+[hidden]{
+  display: none !important;
 }
 
 html, body{
@@ -137,10 +142,23 @@ header .action-btn.updated.active .fa{
   内容
 */
 main{
+  opacity: 0;
   width: 100%;
   margin: auto;
   padding: 5em 1.75em;
   max-width: 60em;
+  transition: opacity .3s;
+}
+main.layout-default {
+  opacity: 1;
+}
+main.layout-simple {
+  opacity: 1;
+  max-width: 40em;
+  margin-top: 10em;
+}
+main.layout-simple .navi-items {
+  display: none;
 }
 
 .input-box{
@@ -373,12 +391,6 @@ body:not(.low-animate) window{
   --webkit-backdrop-filter: blur(5px);
 }
 
-@media screen and (prefers-color-scheme: dark){
-  window{
-    background: rgba(255, 255, 255, .1);
-  }
-}
-
 window.active{
   opacity: 1;
   pointer-events: auto;
@@ -462,6 +474,32 @@ body.low-animate .the-window.closed{
 .the-window .window-body::-webkit-scrollbar,
 .the-drawer .drawer-body::-webkit-scrollbar{
   width: 6px;
+}
+
+/* 自选本地图片 */
+.custom-background-preview {
+  height: 8em;
+  cursor: copy;
+  display: flex;
+  margin-top: 1em;
+  overflow: hidden;
+  text-align: center;
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, .05) center/cover no-repeat;
+  border: var(--border-width) var(--gray) solid;
+}
+.custom-background-preview::before {
+  width: 100%;
+  opacity: 0;
+  display: block;
+  font-size: 1.2em;
+  line-height: 8rem;
+  content: attr(aria-label);
+  background-color: var(--input-bg);
+  transition: opacity .3s;
+}
+.custom-background-preview:not([style])::before, .custom-background-preview:hover::before {
+  opacity: .6;
 }
 
 .the-drawer{

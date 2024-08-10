@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="奇趣起始页, 起始页, 奇趣新标签页, 新标签页, KStart, 开源起始页">
+    <meta name="description" content="一个简洁轻巧的公共起始页服务，基于原生 JavaScript 构建">
+    <meta property="og:title" content="奇趣起始页">
+    <meta property="og:description" content="一个简洁轻巧的公共起始页服务，基于原生 JavaScript 构建">
     <title>奇趣起始页</title>
     <link rel="icon" href="static/icon.png" sizes="192x192" />
     <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/Dreamer-Paul/Kico-Style@master/kico.css" />
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1809713_7obvxtx02f.css" />
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_1809713_0i9n7b43jm6t.css" />
     <link href="https://fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="static/main.css" />
+    <link rel="canonical" href="https://s.paul.ren" />
     <script src="https://fastly.jsdelivr.net/gh/Dreamer-Paul/Kico-Style/kico.js" defer></script>
     <script src="static/main.js" defer></script>
 </head>
@@ -102,7 +107,8 @@
             <article>
                 <p><img src="static/about.jpg" alt="关于奇趣起始页"></p>
                 <p>欢迎使用奇趣起始页！本项目建设于 2020/5/9，是一个主打社区形式维护的开源项目。几乎采用原生（JS/CSS）技术实现，性能扛扛的！</p>
-                <p>它的使用方式很简单，只需要在 <a href="https://github.com/Dreamer-Paul/KStart-Sites" target="_blank">本项目的仓库</a> 上提交 PR，即可创造一个属于自己的导航页面。访问它只需要一个 <a href="https://s.paul.ren/?u=paul" target="_blank">URL 后缀</a> 即可直达，无需注册和登录，非常方便易用。</p>
+                <p>本站默认<b>不保存任何私人数据</b>，因此不必担心你的<b>个人隐私被他人所查阅</b>。当然，你也可以选择编辑并共享它们。</p>
+                <p>只需要在 <a href="https://github.com/Dreamer-Paul/KStart-Sites" target="_blank">本项目的仓库</a> 上提交 PR，即可创造一个属于自己的导航页面。访问它只需要一个 <a href="https://s.paul.ren/?u=paul" target="_blank">URL 后缀</a> 即可直达，无需注册和登录，非常方便易用。</p>
                 <p>现有的类似站点已经很多了，为什么我仍然选择编写了这个项目？这是因为它们都是「<b>闭源的私人项目</b>」，只有作者本人才可以进行维护。</p>
                 <p>与此同时，这些站点的导航项大多已经预设。想要修改它们，要么需要注册后修改，要么就干脆不给改，个人觉得略显鸡肋。如果你更换了电脑，不就需要重新登录了吗？</p>
                 <p>本项目与众不同的地方则是采用了 GitHub 托管的形式，属于“无后端”项目，于是一些看似可以提升用户体验的功能，我暂时没有考虑去实现它。如果你有些好的建议，不妨在项目的 <a href="https://github.com/Dreamer-Paul/KStart/issues" target="_blank">Issues</a> 区进行留言？</p>
@@ -110,7 +116,6 @@
                 <ul>
                     <li><a href="https://xiaoshu.app" target="_blank" rel="nofollow">小舒同学</a></li>
                     <li><a href="https://limestart.cn" target="_blank" rel="nofollow">青柠起始页</a></li>
-                    <li><a href="https://yubius.com" target="_blank" rel="nofollow">布斯起始页（本项目的二改）</a></li>
                 </ul>
                 <h3>使用了开源项目：</h3>
                 <ul>
@@ -119,8 +124,12 @@
                 </ul>
                 <h3>使用了第三方服务：</h3>
                 <ul>
-                    <li><a href="https://www.iconfont.cn" target="_blank" rel="nofollow">IconFont</a></li>
-                    <li><a href="https://api.paugram.com" target="_blank">保罗 API</a>（随机动漫壁纸、必应壁纸解析）</li>
+                    <li><a href="https://www.iconfont.cn" target="_blank" rel="nofollow">IconFont</a>（图标托管）</li>
+                    <li><a href="https://api.paugram.com" target="_blank">保罗 API</a>（随机动漫壁纸、必应壁纸解析）
+                        <ul>
+                            <li>其中 <a href="https://github.com/Dreamer-Paul/Anime-Wallpaper" target="_blank">随机动漫壁纸</a> 部分是公开仓库，欢迎你的投稿</li>
+                        </ul>
+                    </li>
                 </ul>
             </article>
         </div>
@@ -133,12 +142,18 @@
         <div class="window-body">
             <fieldset>
                 <label>
+                    <span>界面布局</span>
+                    <select name="layout" data-key="layout"></select>
+                </label>
+                <label>
                     <span>默认搜索引擎：</span>
                     <select name="search" data-key="search_method"></select>
                 </label>
                 <label>
                     <span>自定义背景：</span>
                     <select name="background" data-key="background_type"></select>
+                    <span class="custom-background-preview" aria-label="选择图片" hidden></span>
+                    <input type="file" id="custom-background-input" hidden />
                 </label>
                 <label>
                     <span>减淡动画和视觉效果：</span>
@@ -148,7 +163,7 @@
                     <span>自动聚焦到搜索框：</span>
                     <input name="auto_focus" type="checkbox" class="switch" />
                 </label>
-                
+
                 <p class="btn-group">
                     <button class="btn small primary" id="set-reset" title="重置个人设置为默认值">重置为默认</button>
                     <button class="btn small transparent" id="set-input" title="导入个人设置">导入</button>
